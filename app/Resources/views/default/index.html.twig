@@ -22,24 +22,52 @@
 {% block body %}
 
 <div style="margin: auto;">
-    <table  border="0"  cellpadding="8" cellspacing="3" align="center" >
-        <thead>
-        <tr>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th align="center">
-                <img src="{{ udala.logoa }}"/>
-                <h3 style="text-align:center">{{ udala.izendapenaeu }}</h3>
-            </th>
-        </tr>
-        <tr>
-            <th align="center"><h1>ORDENANZAS FISCALES</h1></th>
-        </tr>
-        </tbody>
-    </table>
+
+
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+            <img src="{{ udala.logoa }}"/>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 text-center">
+            <h3 style="text-align:center">{{ udala.izendapenaeu }}</h3>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+
+    </div>
+    <div class="row">
+
+    </div>
+
+    {#<table  border="0"  cellpadding="8" cellspacing="3" align="center" >#}
+        {#<thead>#}
+        {#<tr>#}
+            {#<th></th>#}
+        {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#<tr>#}
+            {#<th align="center">#}
+
+                {#<h3 style="text-align:center">{{ udala.izendapenaeu }}</h3>#}
+            {#</th>#}
+        {#</tr>#}
+        {#<tr>#}
+            {#<th align="center"><h1>ORDENANZAS FISCALES</h1></th>#}
+        {#</tr>#}
+        {#</tbody>#}
+    {#</table>#}
 </div>
 <p style="margin-bottom: 0cm; line-height: 100%; page-break-before: always"></p>
 {% for ordenantza in ordenantzas %}
@@ -130,7 +158,7 @@
 
             {% for azpiatala in atala.azpiatalak  if azpiatala.ezabatu!= 1 %}
                 <table class="table table-hover table-responsive table-bordered">
-                    <th class="row-fluid col-xs-6" id="{{ atala.kodea ~ azpiatala.kodea }}">
+                    <th colspan="2" class="row-fluid col-xs-6" id="{{ atala.kodea ~ azpiatala.kodea }}">
                         <h4 class="row-fluid col-md-12">
                         <span class="col-md-1 text-left" style="display: block;">
                             {{ azpiatala.kodea }}
@@ -141,9 +169,7 @@
                         </span>
                         </h4>
                     </th>
-                    <th></th>
-                    <th></th>
-                    <th class="row-fluid col-xs-6">
+                    <th colspan="2" class="row-fluid col-xs-6">
                         <h4 class="row-fluid col-md-12">
                         <span class="col-md-1 text-left" tabindex="-1" style="display: block;">
                             {{ azpiatala.kodea }}
@@ -177,25 +203,39 @@
                             {% endfor %}
                         </td>
                     </tr>
-
-                    {% for k in azpiatala.kontzeptuak  if k.ezabatu!= 1 %}
+                    {% if azpiatala.kontzeptuak %}
                         <tr>
-                            <td class="col-md-4">
-                                <div>
-                                    <span>{{ k.kontzeptuaeu }} {% if k.baldintza %}( {{ k.baldintza.baldintzaeu }} ){% endif %}</span>
-                                </div>
-                            </td>
-                            <td>
-                                <span>{{ k.kopurua }}</span>
-                                <span>{{ k.unitatea }}</span>
-                            </td>
-                            <td class="col-md-5">
-                                <div>
-                                    <span>{{ k.kontzeptuaes }} {% if k.baldintza %}( {{ k.baldintza.baldintzaes }} ){% endif %}</span>
+                            <td colspan="4" class="text-center">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
+                                        <table class="table table-hover table-responsive table-bordered text-left" width="90%">
+                                            {% for k in azpiatala.kontzeptuak  if k.ezabatu!= 1 %}
+                                                <tr>
+                                                    <td class="col-md-5">
+                                                        <div>
+                                                            <span>{{ k.kontzeptuaeu }} {% if k.baldintza %}( {{ k.baldintza.baldintzaeu }} ){% endif %}</span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="col-md-2">
+                                                        <span>{{ k.kopurua }}</span>
+                                                        <span>{{ k.unitatea }}</span>
+                                                    </td>
+                                                    <td class="col-md-5">
+                                                        <div>
+                                                            <span>{{ k.kontzeptuaes }} {% if k.baldintza %}( {{ k.baldintza.baldintzaes }} ){% endif %}</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </div>
+                                    <div class="col-md-1"></div>
                                 </div>
                             </td>
                         </tr>
-                    {% endfor %}
+                    {% endif %}
+
 
                     </tbody>
                 </table>
