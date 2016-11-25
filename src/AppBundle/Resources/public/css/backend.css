@@ -1,0 +1,191 @@
+
+body {
+    min-height: 2000px !important;
+    padding-top: 70px !important;
+}
+
+h3 {
+    margin-top: 0px !important;
+}
+h4  {
+    margin-top: 0px !important;
+}
+
+#loading {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -168px; /* half width of the spinner gif */
+    margin-top: -177px; /* half height of the spinner gif */
+    text-align:center;
+    z-index:1234;
+    overflow: auto;
+    width: 336px; /* width of the spinner gif */
+    height: 354px; /*hight of the spinner gif +2px to fix IE8 issue */
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.gainean {
+    background-color: #ccc;
+    border: 1px dashed ;
+}
+
+.editable-buttons {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: -90px !important;
+    zoom: 1;
+}
+
+/*.editable-input {*/
+    /*min-height: 350px !important;*/
+/*}*/
+
+.wysihtml5-sandbox {
+    min-height: 350px !important;
+}
+
+
+
+
+/*.dropdown-submenu{position:relative;}*/
+/*.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}*/
+/*.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}*/
+/*.dropdown-submenu:hover>a:after{border-left-color:#555;}*/
+/*.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}*/
+/*body {*/
+/*padding-top: 40px;*/
+/*position: relative;*/
+/*}*/
+
+
+.dropdown-menu > li.kopie > a {
+    padding-left:5px;
+}
+
+.dropdown-submenu {
+    position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top:0;left:100%;
+    margin-top:-6px;margin-left:-1px;
+    -webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;
+}
+
+.dropdown-submenu > a:after {
+    border-color: transparent transparent transparent #333;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    content: " ";
+    display: block;
+    float: right;
+    height: 0;
+    margin-right: -10px;
+    margin-top: 5px;
+    width: 0;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color:#555;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > .active > a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+
+    .navbar-nav  {
+        display: inline;
+    }
+    .navbar-default .navbar-brand {
+        display: inline;
+    }
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: #fff;
+    }
+    .navbar-default .navbar-nav .dropdown-menu > li > a {
+        color: red;
+        background-color: #ccc;
+        border-radius: 4px;
+        margin-top: 2px;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #333;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        background-color: #ccc;
+    }
+
+    .navbar-nav .open .dropdown-menu {
+        border-bottom: 1px solid white;
+        border-radius: 0;
+    }
+    .dropdown-menu {
+        padding-left: 10px;
+    }
+    .dropdown-menu .dropdown-menu {
+        padding-left: 20px;
+    }
+    .dropdown-menu .dropdown-menu .dropdown-menu {
+        padding-left: 30px;
+    }
+    li.dropdown.open {
+        border: 0px solid red;
+    }
+
+}
+
+@media (min-width: 768px) {
+    ul.nav li:hover > ul.dropdown-menu {
+        display: block;
+    }
+    #navbar {
+        text-align: center;
+    }
+}
+
+.menuordenantza {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333333;
+    display: block;
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+    font-size: 12px;
+    line-height: 3.5;
+    margin: 0 0 10px;
+    padding: 9px 14px;
+    word-break: break-word;
+    word-wrap: break-word;
+}
+
+.menuordenantza:hover {
+    text-decoration: none;
+}
+
+.menuordenantza:hover {
+    background-color: #e1ebb3;
+}
+
+.containermenua {
+    margin-top: 50px;
+}
+
+.litext {
+    width: 90% !important;
+}
+
+.btnsubmenu {
+    display: initial;
+    padding: 12px;
+}
+
+.btnsubmenu:hover {
+    border: 1px solid #8c8c8c;
+}
