@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <title>Zerga Ordenantzak</title>
+    <title>{% block izenburua %}Zerga Ordenantzak {% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     {% block stylesheets %}
@@ -38,26 +38,6 @@
 
 <body data-spy="scroll">
 
-{#<div id="navbar-example">#}
-    {#<nav class="navbar navbar-inverse navbar-fixed-top marginBottom-0" role="navigation">#}
-        {#<div class="navbar-header">#}
-            {#<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">#}
-                {#<span class="sr-only">Toggle</span>#}
-                {#<span class="icon-bar"></span>#}
-                {#<span class="icon-bar"></span>#}
-                {#<span class="icon-bar"></span>#}
-            {#</button>#}
-            {#{% block hasieraesteka %}#}
-                {#<a class="navbar-brand"#}
-                   {#href="javascript:void(0);">{% block zerganame %}Zerga Ordenantzak{% endblock %}</a>#}
-            {#{% endblock %}#}
-        {#</div>#}
-
-
-    {#</nav>#}
-
-{#</div>#}
-
 <div class="container">
     {% block body %}{% endblock %}
 </div> <!-- /container -->
@@ -67,20 +47,6 @@
     <script src="{{ asset('js/jquery.js') }}"></script>
     <!-- Include all JavaScripts, compiled by Assetic -->
     <script src="{{ asset('js/bootstrap.js') }}"></script>
-
-    <script>
-//        var body = $('body');
-//        body.scrollspy({
-//            'target': '#nav',
-//            'offset': 100 //this must match the window.scrollY below or you'll have a bad time mmkay
-//        });
-//
-//        $(window).on("hashchange", function () {
-//            window.scrollTo(window.scrollX, window.scrollY - 100);
-//        });
-
-
-    </script>
 
 {% endblock %}
 </body>

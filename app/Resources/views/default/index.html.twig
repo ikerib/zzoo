@@ -19,12 +19,13 @@
     </style>
 {% endblock %}
 
+{% block izenburua %}{{ udala.izenaeu }}{% endblock %}
+
 {% block body %}
 
 <div style="margin: auto;">
 
-
-    <div class="row"></div>
+    <div class="row">&nbsp;</div>
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4 text-center">
@@ -40,34 +41,10 @@
         </div>
         <div class="col-md-4"></div>
     </div>
-    <div class="row">
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
 
-    </div>
-    <div class="row">
-
-    </div>
-    <div class="row">
-
-    </div>
-
-    {#<table  border="0"  cellpadding="8" cellspacing="3" align="center" >#}
-        {#<thead>#}
-        {#<tr>#}
-            {#<th></th>#}
-        {#</tr>#}
-        {#</thead>#}
-        {#<tbody>#}
-        {#<tr>#}
-            {#<th align="center">#}
-
-                {#<h3 style="text-align:center">{{ udala.izendapenaeu }}</h3>#}
-            {#</th>#}
-        {#</tr>#}
-        {#<tr>#}
-            {#<th align="center"><h1>ORDENANZAS FISCALES</h1></th>#}
-        {#</tr>#}
-        {#</tbody>#}
-    {#</table>#}
 </div>
 <p style="margin-bottom: 0cm; line-height: 100%; page-break-before: always"></p>
 {% for ordenantza in ordenantzas %}
