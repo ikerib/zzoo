@@ -1,7 +1,7 @@
-Zerga Ordenantzak
+Zerga Ordenantzak Kontsulta
 ========================
 
-Zerga ordenantzak kudeatzeko aplikazioa.
+Zerga ordenanak kontsulta.
 
 ####Requirements
 
