@@ -27,7 +27,6 @@
                 )
             );
 
-
             return $this->render('default\index.html.twig', array(
                 'ordenantzas' => $ordenantzak,
                 'udala'=>$udala,
