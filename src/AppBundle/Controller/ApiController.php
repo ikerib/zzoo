@@ -75,6 +75,57 @@ class ApiController extends FOSRestController
     }
 
     /**
+     * Udal baten Ordenantza zerrenda Udal-Kodea bidez.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Ordenantza guztien zerrenda eskuratu",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @return array|View
+     *
+     * @Annotations\View()
+     * @Get("/ordenantzakbykodea/{udalKodea}")
+     */
+    public function getOrdenantzakbykodeaAction($udalKodea)
+    {
+//        $em = $this->getDoctrine()->getManager();
+//        $ordenantzak = $em->getRepository( 'AppBundle:Ordenantza' )->findBy(
+//            array (
+//                'udala.kodea' => $udalKodea,
+//            )
+//        );
+//        dump( $udalKodea );
+        $em = $this->getDoctrine()->getManager();
+        /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+        $query = $em->createQuery('
+            SELECT o 
+            FROM AppBundle:Ordenantza o
+               INNER JOIN o.udala u
+            WHERE u.kodea = :udalkodea
+            ');
+        $query->setParameter( 'udalkodea', $udalKodea );
+//        dump( $query->getSQL() );
+//        dump( $udalKodea );
+        $ordenantzak = $query->getResult();
+//        dump( $ordenantzak );
+
+        $view = View::create();
+        $view->setData( $ordenantzak );
+        header( 'content-type: application/json; charset=utf-8' );
+        header( "access-control-allow-origin: *" );
+
+        return $view;
+    }
+
+
+
+
+    /**
      * @ApiDoc(
      *   resource = true,
      *   description = "Ordenantza baten informazioa eskuratu"
@@ -158,14 +209,47 @@ class ApiController extends FOSRestController
      * @return array data
      *
      * @Annotations\View()
-     * @Get("/zergak/{udalaid}")
+     * @Get("/udalzergak/{udalaid}")
      */
-    public function getAzpiatalakAction($udalaid)
+    public function getAzpiatalakudalaAction($udalaid)
     {
         $em = $this->getDoctrine()->getManager();
         /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
-        $query = $em->createQuery('SELECT p.id, p.kodea, p.izenburuaeu FROM AppBundle:Azpiatala p WHERE p.udala=:udalaid');
+        $query = $em->createQuery('SELECT p.id, p.kodea_prod, p.izenburuaeu_prod, p.izenburuaes_prod FROM AppBundle:Azpiatala p WHERE p.udala=:udalaid');
         $query->setParameter( 'udalaid', $udalaid );
+        $azpiatalak = $query->getResult();
+
+        $view = View::create();
+        $view->setData($azpiatalak);
+        header('content-type: application/json; charset=utf-8');
+        header("access-control-allow-origin: *");
+        return $view;
+
+    }
+
+    /**
+     * Udal baten zergen zerrenda.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Udal baten zerga guztien zerrenda eskuratu",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @return array data
+     *
+     * @Annotations\View()
+     * @Get("/zergak/{tributuaid}")
+     */
+    public function getAzpiatalakAction($tributuaid)
+    {
+        $em = $this->getDoctrine()->getManager();
+        /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+        $query = $em->createQuery('SELECT p.id, p.kodea_prod, p.izenburuaeu_prod,p.izenburuaes_prod  FROM AppBundle:Azpiatala p WHERE p.atala=:atalaid');
+        $query->setParameter( 'atalaid', $tributuaid );
         $azpiatalak = $query->getResult();
 
         $view = View::create();
