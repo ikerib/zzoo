@@ -4,6 +4,7 @@
 
     use Doctrine\ORM\Mapping as ORM;
     use AppBundle\Annotation\UdalaEgiaztatu;
+    use JMS\Serializer\Annotation as Serializer;
     use JMS\Serializer\Annotation\ExclusionPolicy;
     use JMS\Serializer\Annotation\Expose;
 
@@ -117,6 +118,7 @@
          * @var Azpiatalaparrafoa
          * @ORM\OneToMany(targetEntity="Azpiatalaparrafoa", mappedBy="azpiatala", cascade={"remove"})
          * @ORM\OrderBy({"ordena" = "ASC"})
+         * @Expose()
          */
         protected $parrafoak;
 
@@ -124,6 +126,7 @@
          * @var Azpiatalaparrafoaondoren
          * @ORM\OneToMany(targetEntity="Azpiatalaparrafoaondoren", mappedBy="azpiatala", cascade={"remove"})
          * @ORM\OrderBy({"ordena" = "ASC"})
+         * @Expose()
          */
         protected $parrafoakondoren;
 
