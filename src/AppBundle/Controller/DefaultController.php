@@ -12,6 +12,25 @@
     class DefaultController extends Controller
     {
         /**
+         * @Route("/ordenantza/{id}", name="ordenantzabat")
+         */
+        public function ordenantzabatAction(Request $request, $id)
+        {
+            $em = $this->getDoctrine()->getManager();
+
+            /** @var \AppBundle\Entity\Ordenantza $ordenantza */
+            $ordenantza = $em->getRepository( 'AppBundle:Ordenantza' )->find( $id );
+
+            /** @var \AppBundle\Entity\Udala $udala */
+            $udala = $ordenantza->getUdala();
+
+            return $this->render('default\ordenantza.html.twig', array(
+                'ordenantza'    => $ordenantza,
+                'udala'         => $udala
+            ));
+        }
+
+        /**
          * @Route("/html/{udala}", name="homepage")
          */
         public function htmlAction(Request $request, $udala)
@@ -32,4 +51,6 @@
                 'udala'=>$udala,
             ));
         }
+
+
     }
