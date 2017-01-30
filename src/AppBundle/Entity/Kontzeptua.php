@@ -141,6 +141,7 @@
 
         /**
          * @var \Baldintza
+         * @Expose
          *
          * @ORM\ManyToOne(targetEntity="Baldintza", fetch="EAGER")
          * @ORM\JoinColumns({
