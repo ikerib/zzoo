@@ -40,12 +40,12 @@
             $udala = $em->getRepository( 'AppBundle:Udala' )->find( $udala );
 
             /** @var $ordenantzak \AppBundle\Entity\Ordenantza */
-            $ordenantzak = $em->getRepository( 'AppBundle:Ordenantza' )->findAll(
+            $ordenantzak = $em->getRepository( 'AppBundle:Ordenantza' )->findBy(
                 array (
-                    'udala_id' => $udala,
+                    'udala' => $udala->getId(),
                 )
             );
-
+            dump( $ordenantzak );
             return $this->render('default\index.html.twig', array(
                 'ordenantzas' => $ordenantzak,
                 'udala'=>$udala,
