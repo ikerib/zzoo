@@ -44,6 +44,7 @@
                 array (
                     'udala' => $udala->getId(),
                 )
+                ,array('kodea' => 'ASC')
             );
             dump( $ordenantzak );
             return $this->render('default\index.html.twig', array(
