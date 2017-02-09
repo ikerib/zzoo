@@ -41,6 +41,43 @@ class ApiController extends FOSRestController
 //    ORDENANTZAK
 
     /**
+     * Udal baten Ordenantza zerrenda Udal-Kodea bidez.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Ordenantza guztien zerrenda eskuratu",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @return array|View
+     * @Annotations\View()
+     * @Get("/ordenantzakbykodea/{kodea}.{_format}")
+     */
+    public function getOrdenantzakbykodeaAction($kodea)
+    {
+        $em = $this->getDoctrine()->getManager();
+        /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+        $query = $em->createQuery('
+            SELECT o 
+            FROM AppBundle:Ordenantza o
+               INNER JOIN o.udala u
+            WHERE u.kodea = :udalkodea
+            ');
+        $query->setParameter( 'udalkodea', $kodea );
+        $ordenantzak = $query->getResult();
+        $view = View::create();
+        $view->setData( $ordenantzak );
+        header( 'content-type: application/json; charset=utf-8' );
+        header( "access-control-allow-origin: *" );
+
+        return $view;
+    }
+
+
+    /**
      * Udal baten Ordenantza zerrenda.
      *
      * @ApiDoc(
@@ -55,14 +92,15 @@ class ApiController extends FOSRestController
      * @return array|View
      *
      * @Annotations\View()
-     * @Get("/ordenantzak/{udalaid}")
+     * @Get("/ordenantzakbyid/{udalaid}")
      */
     public function getOrdenantzakAction($udalaid)
     {
+
         $em = $this->getDoctrine()->getManager();
         $ordenantzak = $em->getRepository( 'AppBundle:Ordenantza' )->findBy(
             array (
-                'udala' => $udalaid,
+                'udala.kodea' => $udalaid,
             )
         );
 
@@ -74,53 +112,7 @@ class ApiController extends FOSRestController
         return $view;
     }
 
-    /**
-     * Udal baten Ordenantza zerrenda Udal-Kodea bidez.
-     *
-     * @ApiDoc(
-     *   resource = true,
-     *   description = "Ordenantza guztien zerrenda eskuratu",
-     *   statusCodes = {
-     *     200 = "Zuzena denean"
-     *   }
-     * )
-     *
-     *
-     * @return array|View
-     *
-     * @Annotations\View()
-     * @Get("/ordenantzakbykodea/{udalKodea}")
-     */
-    public function getOrdenantzakbykodeaAction($udalKodea)
-    {
-//        $em = $this->getDoctrine()->getManager();
-//        $ordenantzak = $em->getRepository( 'AppBundle:Ordenantza' )->findBy(
-//            array (
-//                'udala.kodea' => $udalKodea,
-//            )
-//        );
-//        dump( $udalKodea );
-        $em = $this->getDoctrine()->getManager();
-        /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
-        $query = $em->createQuery('
-            SELECT o 
-            FROM AppBundle:Ordenantza o
-               INNER JOIN o.udala u
-            WHERE u.kodea = :udalkodea
-            ');
-        $query->setParameter( 'udalkodea', $udalKodea );
-//        dump( $query->getSQL() );
-//        dump( $udalKodea );
-        $ordenantzak = $query->getResult();
-//        dump( $ordenantzak );
 
-        $view = View::create();
-        $view->setData( $ordenantzak );
-        header( 'content-type: application/json; charset=utf-8' );
-        header( "access-control-allow-origin: *" );
-
-        return $view;
-    }
 
 
 
