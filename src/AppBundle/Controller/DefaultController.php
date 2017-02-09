@@ -1,57 +1,55 @@
 <?php
 
-    namespace AppBundle\Controller;
+namespace AppBundle\Controller;
 
-    use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-    use Symfony\Component\HttpFoundation\Request;
-    use AppBundle\AppBundle;
-    use AppBundle\Entity\Ordenantza;
-    use AppBundle\Entity\Udala;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\AppBundle;
+use AppBundle\Entity\Ordenantza;
+use AppBundle\Entity\Udala;
 
-    class DefaultController extends Controller
+class DefaultController extends Controller
+{
+    /**
+     * @Route("/ordenantza/{id}", name="ordenantzabat")
+     */
+    public function ordenantzabatAction(Request $request, $id)
     {
-        /**
-         * @Route("/ordenantza/{id}", name="ordenantzabat")
-         */
-        public function ordenantzabatAction(Request $request, $id)
-        {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-            /** @var \AppBundle\Entity\Ordenantza $ordenantza */
-            $ordenantza = $em->getRepository( 'AppBundle:Ordenantza' )->find( $id );
+        /** @var \AppBundle\Entity\Ordenantza $ordenantza */
+        $ordenantza = $em->getRepository('AppBundle:Ordenantza')->find($id);
 
-            /** @var \AppBundle\Entity\Udala $udala */
-            $udala = $ordenantza->getUdala();
+        /** @var \AppBundle\Entity\Udala $udala */
+        $udala = $ordenantza->getUdala();
 
-            return $this->render('default\ordenantza.html.twig', array(
-                'ordenantza'    => $ordenantza,
-                'udala'         => $udala
-            ));
-        }
-
-        /**
-         * @Route("/html/{udala}", name="homepage")
-         */
-        public function htmlAction(Request $request, $udala)
-        {
-            $em = $this->getDoctrine()->getManager();
-            /** @var $udala \AppBundle\Entity\Udala */
-            $udala = $em->getRepository( 'AppBundle:Udala' )->find( $udala );
-
-            /** @var $ordenantzak \AppBundle\Entity\Ordenantza */
-            $ordenantzak = $em->getRepository( 'AppBundle:Ordenantza' )->findBy(
-                array (
-                    'udala' => $udala->getId(),
-                )
-                ,array('kodea' => 'ASC')
-            );
-            dump( $ordenantzak );
-            return $this->render('default\index.html.twig', array(
-                'ordenantzas' => $ordenantzak,
-                'udala'=>$udala,
-            ));
-        }
-
-
+        return $this->render('default\ordenantza.html.twig', array(
+            'ordenantza' => $ordenantza,
+            'udala' => $udala
+        ));
     }
+
+    /**
+     * @Route("/html/{udala}", name="homepage")
+     */
+    public function htmlAction(Request $request, $udala)
+    {
+        $em = $this->getDoctrine()->getManager();
+        /** @var $udala \AppBundle\Entity\Udala */
+        $udala = $em->getRepository('AppBundle:Udala')->findOneBy(array("kodea" => $udala));
+
+        /** @var $ordenantzak \AppBundle\Entity\Ordenantza */
+        $ordenantzak = $em->getRepository('AppBundle:Ordenantza')->findBy(
+            array(
+                'udala' => $udala->getId(),
+            )
+            , array('kodea' => 'ASC')
+        );
+
+        return $this->render('default\index.html.twig', array(
+            'ordenantzas' => $ordenantzak,
+            'udala' => $udala,
+        ));
+    }
+}
