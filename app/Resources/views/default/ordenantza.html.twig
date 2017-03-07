@@ -30,13 +30,13 @@
             <div class="col-xs-6">
                 <h4 class="row-fluid col-md-12">
                     <span class="col-md-1 text-left" style="display: block;">{{ ordenantza.kodea }}</span>
-                    <span class="col-md-10 text-left" style="display: block;">{{ ordenantza.izenburuaeu }}</span>
+                    <span class="col-md-10 text-left" style="display: block;">{{ ordenantza.izenburuaeuProd }}</span>
                 </h4>
             </div>
             <div class="col-xs-6">
                 <h4 class="row-fluid col-md-12">
                     <span class="col-md-1 text-left" style="display: block;">{{ ordenantza.kodea }}</span>
-                    <span class="ordenantza col-md-10 text-left" style="display: block;">{{ ordenantza.izenburuaes }}</span>
+                    <span class="ordenantza col-md-10 text-left" style="display: block;">{{ ordenantza.izenburuaesProd }}</span>
                 </h4>
             </div>
         </div>
@@ -46,12 +46,12 @@
             <div class="row ordenantzaparrafoa">
                 <div class="col-xs-6">
                     <div class="divTextua">
-                        <span class="" style="display: block;">{{ p.testuaeu | raw }}</span>
+                        <span class="" style="display: block;">{{ p.testuaeuProd | raw }}</span>
                     </div>
                 </div>
                 <div class="col-xs-6">
                     <div class="divTextua">
-                        <span class="" style="display: block;">{{ p.testuaes | raw }}</span>
+                        <span class="" style="display: block;">{{ p.testuaesProd | raw }}</span>
                     </div>
                 </div>
             </div>
@@ -61,26 +61,26 @@
 
         {% for atala in ordenantza.atalak if atala.ezabatu!= 1 %}
             {% if atala.utsa != 1 %}
-                <div class="row atala">
+                <div class="row atala" id="{{ ordenantza.id ~ "-" ~ atala.id }}">
                     <div class="col-xs-6">
-                        <h3 class="row-fluid col-md-12" id="{{ atala.kodea }}">
+                        <h3 class="row-fluid col-md-12" id="{{ atala.getKodeaProd }}">
                         <span class="col-md-1 text-left" style="display: block;">
-                            {{ atala.kodea }}
+                            {{ atala.getKodeaProd }}
                         </span>
                             <span class="col-md-1 text-left">-</span>
                             <span class="col-md-10 text-left" style="display: block;">
-                            {{ atala.izenburuaeu |raw}}
+                            {{ atala.izenburuaeuProd |raw}}
                         </span>
                         </h3>
                     </div>
                     <div class="col-xs-6">
                         <h3 class="row-fluid col-md-12">
                         <span class="col-md-1 text-left" style="display: block;">
-                            {{ atala.kodea }}
+                            {{ atala.getKodeaProd }}
                         </span>
                             <span class="col-md-1 text-left">-</span>
                             <span class="col-md-10 text-left" style="display: block;">
-                            {{ atala.izenburuaes |raw }}
+                            {{ atala.izenburuaesProd |raw }}
                         </span>
                         </h3>
                     </div>
@@ -91,14 +91,14 @@
                         <div class="divEditable col-xs-6">
                             <div class="divEditableatalaparrafoa">
                                 <div class="divTextua" id="atalaparrafoa{{ p.id }}">
-                                    <span class="" style="display: block;">{{ p.testuaeu | raw }}</span>
+                                    <span class="" style="display: block;">{{ p.testuaeuProd | raw }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="divEditable col-xs-6">
                             <div class="divEditable">
                                 <div class="divTextua">
-                                    <span class="" style="display: block;">{{ p.testuaes | raw }}</span>
+                                    <span class="" style="display: block;">{{ p.testuaesProd | raw }}</span>
                                 </div>
                             </div>
                         </div>
@@ -110,25 +110,25 @@
 
             {% for azpiatala in atala.azpiatalak  if azpiatala.ezabatu!= 1 %}
                 <table class="table table-hover table-responsive table-bordered">
-                    <th colspan="2" class="row-fluid col-xs-6" id="{{ atala.kodea ~ azpiatala.kodea }}">
+                    <th colspan="2" class="row-fluid col-xs-6" id="{{ atala.getKodeaProd ~ azpiatala.kodeaProd }}">
                         <h4 class="row-fluid col-md-12">
                         <span class="col-md-1 text-left" style="display: block;">
-                            {{ azpiatala.kodea }}
+                            {{ azpiatala.kodeaProd }}
                         </span>
                             <span class="col-md-1 text-left">-</span>
                             <span class="col-md-10 text-left" tabindex="-1" style="display: block;">
-                            {{ azpiatala.izenburuaeu|raw }}
+                            {{ azpiatala.izenburuaeuProd|raw }}
                         </span>
                         </h4>
                     </th>
                     <th colspan="2" class="row-fluid col-xs-6">
                         <h4 class="row-fluid col-md-12">
                         <span class="col-md-1 text-left" tabindex="-1" style="display: block;">
-                            {{ azpiatala.kodea }}
+                            {{ azpiatala.kodeaProd }}
                         </span>
                             <span class="col-md-1 text-left">-</span>
                             <span class="col-md-10 text-left" style="display: block;">
-                            {{ azpiatala.izenburuaes|raw }}
+                            {{ azpiatala.izenburuaesProd|raw }}
                         </span>
                         </h4>
                     </th>
@@ -140,14 +140,14 @@
                                     <div class="divEditable col-xs-6">
                                         <div class="divEditableazpiatalaparrafoa">
                                             <div class="divTextua" id="azpiatalaparrafoa{{ p.id }}">
-                                                <span class="" style="display: block;">{{ p.testuaeu | raw }}</span>
+                                                <span class="" style="display: block;">{{ p.testuaeuProd | raw }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="divEditable col-xs-6">
                                         <div class="divEditableazpiatalaparrafoa">
                                             <div class="divTextua">
-                                                <span class="" style="display: block;">{{ p.testuaes | raw }}</span>
+                                                <span class="" style="display: block;">{{ p.testuaesProd | raw }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +166,7 @@
                                                 <tr>
                                                     <td class="col-md-5">
                                                         <div>
-                                                            <span>{{ k.kontzeptuaeu }} {% if k.baldintza %}( {{ k.baldintza.baldintzaeu }} ){% endif %}</span>
+                                                            <span>{{ k.kontzeptuaeuProd }} {% if k.baldintza %}( {{ k.baldintza.baldintzaeu }} ){% endif %}</span>
                                                         </div>
                                                     </td>
                                                     <td class="col-md-2">
@@ -175,7 +175,7 @@
                                                     </td>
                                                     <td class="col-md-5">
                                                         <div>
-                                                            <span>{{ k.kontzeptuaes }} {% if k.baldintza %}( {{ k.baldintza.baldintzaes }} ){% endif %}</span>
+                                                            <span>{{ k.kontzeptuaesProd }} {% if k.baldintza %}( {{ k.baldintza.baldintzaes }} ){% endif %}</span>
                                                         </div>
                                                     </td>
                                                 </tr>

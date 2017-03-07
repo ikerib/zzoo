@@ -20,7 +20,7 @@ class DefaultController extends Controller
 
         /** @var \AppBundle\Entity\Ordenantza $ordenantza */
         $ordenantza = $em->getRepository('AppBundle:Ordenantza')->find($id);
-
+        dump($ordenantza);
         /** @var \AppBundle\Entity\Udala $udala */
         $udala = $ordenantza->getUdala();
 
