@@ -4,6 +4,7 @@
 
     use Doctrine\ORM\Mapping as ORM;
     use AppBundle\Annotation\UdalaEgiaztatu;
+    use JMS\Serializer\Annotation as Serializer;
     use JMS\Serializer\Annotation\ExclusionPolicy;
     use JMS\Serializer\Annotation\Expose;
 
@@ -102,6 +103,7 @@
 
         /**
          * @var Ordenantza
+         * @Expose()
          * @ORM\OneToMany(targetEntity="Ordenantzaparrafoa", mappedBy="ordenantza", cascade={"remove"})
          * @ORM\OrderBy({"ordena" = "ASC"})
          */

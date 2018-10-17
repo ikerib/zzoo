@@ -129,6 +129,7 @@
 
         /**
          * @var Atalaparrafoa
+         * @Expose
          * @ORM\OneToMany(targetEntity="Atalaparrafoa", mappedBy="atala", cascade={"remove"})
          * @ORM\OrderBy({"ordena" = "ASC"})
          */

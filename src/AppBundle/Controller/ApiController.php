@@ -41,7 +41,6 @@ class ApiController extends FOSRestController
 //    ORDENANTZAK
 
   /**
-   * Udal baten Ordenantza zerrenda Udal-Kodea bidez.
    *
    * @ApiDoc(
    *   resource = true,
@@ -51,6 +50,8 @@ class ApiController extends FOSRestController
    *   }
    * )
    *
+   *
+   * @param $kodea
    *
    * @return array|View
    * @Annotations\View()
@@ -66,15 +67,42 @@ class ApiController extends FOSRestController
             SELECT o 
             FROM AppBundle:Ordenantza o
                INNER JOIN o.udala u
-            WHERE u.kodea = :udalkodea AND ((o.ezabatu IS NULL) or (o.ezabatu <> 1))
+            WHERE u.kodea = :udalkodea
             '
     );
+//
+//    /** @lang text */
+//    '
+//                SELECT o, u , op, a , ap , aa , aap, k, aapo
+//            FROM AppBundle:Ordenantza o
+//               INNER JOIN o.udala u
+//               LEFT JOIN o.parrafoak op
+//               LEFT JOIN o.atalak a
+//               LEFT JOIN a.parrafoak ap
+//               LEFT JOIN a.azpiatalak aa
+//               LEFT JOIN aa.parrafoak aap
+//               LEFT JOIN aa.kontzeptuak k
+//               LEFT JOIN aa.parrafoakondoren aapo
+//            WHERE u.kodea = :udalkodea
+//              AND ((o.ezabatu IS NULL) or (o.ezabatu <> 1))
+//              AND ((op.ezabatu IS NULL) or (op.ezabatu <> 1))
+//              AND ((a.ezabatu IS NULL) or (a.ezabatu <> 1))
+//              AND ((ap.ezabatu IS NULL) or (ap.ezabatu <> 1))
+//              AND ((aa.ezabatu IS NULL) or (aa.ezabatu <> 1))
+//              AND ((aap.ezabatu IS NULL) or (aap.ezabatu <> 1))
+//              AND ((k.ezabatu IS NULL) or (k.ezabatu <> 1))
+//              AND ((aapo.ezabatu IS NULL) or (aapo.ezabatu <> 1))
+//            '
+
+
+
+
     $query->setParameter('udalkodea', $kodea);
     $ordenantzak = $query->getResult();
     $view        = View::create();
     $view->setData($ordenantzak);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+    header('access-control-allow-origin: *');
 
     return $view;
   }

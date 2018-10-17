@@ -63,6 +63,9 @@ doctrine:
             udala_filter:
                 class:   AppBundle\Filter\UdalaFilter
                 enabled: true
+            ezabatu_filter:
+                class:   AppBundle\Filter\EzabatuFilter
+                enabled: true
 
 
 # Swiftmailer Configuration
