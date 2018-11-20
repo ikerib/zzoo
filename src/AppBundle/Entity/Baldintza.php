@@ -4,8 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Annotation\UdalaEgiaztatu;
-use JMS\Serializer\Annotation\ExclusionPolicy;
-use JMS\Serializer\Annotation\Expose;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Baldintza
@@ -13,7 +12,6 @@ use JMS\Serializer\Annotation\Expose;
  * @ORM\Table(name="baldintza")
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
- * @ExclusionPolicy("all")
  */
 class Baldintza
 {
@@ -28,7 +26,6 @@ class Baldintza
 
     /**
      * @var string
-     * @Expose
      *
      * @ORM\Column(name="baldintzaeu", type="text", length=65535, nullable=true)
      */
@@ -36,11 +33,26 @@ class Baldintza
 
     /**
      * @var string
-     * @Expose
      *
      * @ORM\Column(name="baldintzaes", type="text", length=65535, nullable=true)
      */
     private $baldintzaes;
+
+  /**
+   * @var string $createdBy
+   *
+   * @Gedmo\Blameable(on="create")
+   * @ORM\Column
+   */
+  private $createdBy;
+
+  /**
+   * @var string $updatedBy
+   *
+   * @Gedmo\Blameable(on="update")
+   * @ORM\Column
+   */
+  private $updatedBy;
 
     /**
      * ************************************************************************************************************************************************************************
@@ -152,5 +164,53 @@ class Baldintza
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param string $createdBy
+     *
+     * @return Baldintza
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return string
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set updatedBy
+     *
+     * @param string $updatedBy
+     *
+     * @return Baldintza
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedBy
+     *
+     * @return string
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 }

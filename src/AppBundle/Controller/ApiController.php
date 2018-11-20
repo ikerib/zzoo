@@ -68,6 +68,7 @@ class ApiController extends FOSRestController
             FROM AppBundle:Ordenantza o
                INNER JOIN o.udala u
             WHERE u.kodea = :udalkodea
+            ORDER BY o.kodea
             '
     );
 //

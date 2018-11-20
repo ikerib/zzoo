@@ -4,13 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Annotation\UdalaEgiaztatu;
-
+use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Historikoa
  *
  * @ORM\Table(name="historikoa")
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
+ * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=false)
  */
 class Historikoa
 {
@@ -36,6 +37,14 @@ class Historikoa
      * @ORM\Column(name="bogargitaratzedata", type="date", nullable=true)
      */
     private $bogargitaratzedata;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="$bogargitaratzedatatestua", type="string", length=255, nullable=true)
+     */
+    private $bogargitaratzedatatestua;
+
 
     /**
      * @var \DateTime
@@ -101,6 +110,28 @@ class Historikoa
     private $updatedAt;
 
     /**
+     * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
+  /**
+   * @var string $createdBy
+   *
+   * @Gedmo\Blameable(on="create")
+   * @ORM\Column
+   */
+  private $createdBy;
+
+  /**
+   * @var string $updatedBy
+   *
+   * @Gedmo\Blameable(on="update")
+   * @ORM\Column
+   */
+  private $updatedBy;
+
+
+  /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      * ***** ERLAZIOAK
@@ -113,7 +144,7 @@ class Historikoa
      * @ORM\ManyToOne(targetEntity="Udala")
      */
     private $udala;
-    
+
     public function __construct()
     {
         $this->createdAt = New \DateTime();
@@ -431,5 +462,101 @@ class Historikoa
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set bogargitaratzedatatestua
+     *
+     * @param string $bogargitaratzedatatestua
+     *
+     * @return Historikoa
+     */
+    public function setBogargitaratzedatatestua($bogargitaratzedatatestua)
+    {
+        $this->bogargitaratzedatatestua = $bogargitaratzedatatestua;
+
+        return $this;
+    }
+
+    /**
+     * Get bogargitaratzedatatestua
+     *
+     * @return string
+     */
+    public function getBogargitaratzedatatestua()
+    {
+        return $this->bogargitaratzedatatestua;
+    }
+
+    /**
+     * Set deletedAt
+     *
+     * @param \DateTime $deletedAt
+     *
+     * @return Historikoa
+     */
+    public function setDeletedAt($deletedAt)
+    {
+        $this->deletedAt = $deletedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get deletedAt
+     *
+     * @return \DateTime
+     */
+    public function getDeletedAt()
+    {
+        return $this->deletedAt;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param string $createdBy
+     *
+     * @return Historikoa
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return string
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set updatedBy
+     *
+     * @param string $updatedBy
+     *
+     * @return Historikoa
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedBy
+     *
+     * @return string
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 }

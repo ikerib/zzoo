@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Annotation\UdalaEgiaztatu;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
 
 /**
  * Baldintza
@@ -11,6 +13,7 @@ use AppBundle\Annotation\UdalaEgiaztatu;
  * @ORM\Table(name="baldintza")
  * @ORM\Entity
  * @UdalaEgiaztatu(userFieldName="udala_id")
+ * @ExclusionPolicy("all")
  */
 class Baldintza
 {
@@ -25,6 +28,7 @@ class Baldintza
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="baldintzaeu", type="text", length=65535, nullable=true)
      */
@@ -32,6 +36,7 @@ class Baldintza
 
     /**
      * @var string
+     * @Expose
      *
      * @ORM\Column(name="baldintzaes", type="text", length=65535, nullable=true)
      */
