@@ -22,16 +22,9 @@ class Configurator
 
     public function onKernelRequest()
     {
-        if ($user = $this->getUser()) {
-            $filter = $this->em->getFilters()->enable('udala_filter');
-            if ($user->getudala()) {
-                $filter->setParameter('udala_id', $user->getudala()->getId());
-                $filter->setAnnotationReader($this->reader);
-            } else
-            {
-                return '' ;
-            }
-        }
+        $filter =$this->em->getFilters()->enable('ezabatu_marka');
+        $filter->setParameter('ezabatu', null);
+        $filter->setAnnotationReader($this->reader);
     }
 
     private function getUser()

@@ -63,8 +63,8 @@ doctrine:
             udala_filter:
                 class:   AppBundle\Filter\UdalaFilter
                 enabled: true
-            ezabatu_filter:
-                class:   AppBundle\Filter\EzabatuFilter
+            ezabatu_marka:
+                class:   AppBundle\Filter\EzabatuMarka
                 enabled: true
 
 

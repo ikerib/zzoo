@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation\EzabatuMarka;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Annotation\UdalaEgiaztatu;
@@ -12,6 +13,7 @@ use AppBundle\Annotation\UdalaEgiaztatu;
  * @ORM\Table(name="atalaparrafoa", indexes={@ORM\Index(name="atala_id_idx", columns={"atala_id"})})
  * @ORM\Entity(repositoryClass="Gedmo\Sortable\Entity\Repository\SortableRepository")
  * @UdalaEgiaztatu(userFieldName="udala_id")
+ * @EzabatuMarka(userFieldName="ezabatu")
  */
 class Atalaparrafoa
 {

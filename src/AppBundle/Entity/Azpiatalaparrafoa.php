@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Annotation\EzabatuMarka;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Annotation\UdalaEgiaztatu;
 use JMS\Serializer\Annotation\ExclusionPolicy;
@@ -15,6 +16,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity
  * @ExclusionPolicy("all")
  * @UdalaEgiaztatu(userFieldName="udala_id")
+ * @EzabatuMarka(userFieldName="ezabatu")
  */
 class Azpiatalaparrafoa
 {
