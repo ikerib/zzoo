@@ -2,23 +2,13 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\AtalaType;
-use AppBundle\Entity\Atala;
-
-
+use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\Annotations\Get;
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
-
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 /**
@@ -331,7 +321,7 @@ class ApiController extends FOSRestController
    *
    * @return View
    *
-   * @Annotations\View()
+   * @Annotations\View()*
    * @Get("/zerga/{id}")
    */
   public function getAzpiatalaAction($id)
@@ -348,4 +338,35 @@ class ApiController extends FOSRestController
 
   }
 
+
+    /**
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Kostua eskuratu",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     * @param $old_id
+     *
+     * @Get("/kostua/{old_id}")
+     * @return View
+     */
+    public function getKostuaAction($old_id)
+    {
+        /** @var EntityManager $em */
+        $em     = $this->getDoctrine()->getManager();
+        $kostua = $em->getRepository('AppBundle:Kontzeptua')->findBy(
+            array(
+                'origenid' => $old_id,
+            )
+        );
+        $view   = View::create();
+        $view->setData($kostua);
+        header('content-type: application/json; charset=utf-8');
+        header('access-control-allow-origin: *');
+
+        return $view;
+    }
 }
