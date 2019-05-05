@@ -24,6 +24,13 @@ class Formula
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="izenburuaeu", type="text", length=65535, nullable=true)
@@ -307,5 +314,29 @@ class Formula
     public function getUdala()
     {
         return $this->udala;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Formula
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

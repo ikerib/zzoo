@@ -32,6 +32,13 @@ class Azpiatalaparrafoa
     /**
      * @var integer
      *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="ordena", type="bigint", nullable=true)
      */
     private $ordena;
@@ -476,5 +483,29 @@ class Azpiatalaparrafoa
     public function getUpdatedBy()
     {
         return $this->updatedBy;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Azpiatalaparrafoa
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

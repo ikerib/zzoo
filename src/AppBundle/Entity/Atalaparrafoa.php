@@ -28,6 +28,13 @@ class Atalaparrafoa
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
+     * @var integer
      * @Gedmo\SortablePosition
      * @ORM\Column(name="ordena", type="integer", nullable=true)
      */
@@ -492,5 +499,29 @@ class Atalaparrafoa
     public function getUpdatedBy()
     {
         return $this->updatedBy;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Atalaparrafoa
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }
