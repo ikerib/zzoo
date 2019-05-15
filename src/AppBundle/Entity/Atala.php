@@ -117,22 +117,22 @@ class Atala
      */
     private $updatedAt;
 
-  /**
-   * @var string $createdBy
-   *
-   * @Gedmo\Blameable(on="create")
-   * @ORM\Column
-   */
-  private $createdBy;
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(nullable=true)
+     */
+    private $createdBy;
 
-  /**
-   * @var string $updatedBy
-   *
-   * @Gedmo\Blameable(on="update")
-   * @ORM\Column
-   */
-  private $updatedBy;
-    
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(nullable=true)
+     */
+    private $updatedBy;
+
 
     /**
      * ************************************************************************************************************************************************************************
@@ -143,8 +143,6 @@ class Atala
      */
 
     /**
-     * @var \Ordenantza
-     *
      * @ORM\ManyToOne(targetEntity="Ordenantza",inversedBy="atalak")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="ordenantza_id", referencedColumnName="id")
@@ -153,22 +151,19 @@ class Atala
     private $ordenantza;
 
     /**
-     * @var Atalaparrafoa
-     * @ORM\OneToMany(targetEntity="Atalaparrafoa", mappedBy="atala", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Atalaparrafoa", mappedBy="atala", cascade={"remove", "persist"})
      * @ORM\OrderBy({"ordena" = "ASC"})
      */
     protected $parrafoak;
 
     /**
-     * @var Azpiatala
      * @Expose
      * @ORM\OrderBy({"kodea" = "ASC"})
-     * @ORM\OneToMany(targetEntity="Azpiatala", mappedBy="atala", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Azpiatala", mappedBy="atala", cascade={"remove", "persist"})
      */
     protected $azpiatalak;
 
     /**
-     * @var Udala
      * @ORM\ManyToOne(targetEntity="Udala")
      */
     private $udala;
@@ -181,7 +176,7 @@ class Atala
 
     public function __toString()
     {
-        return $this->getKodea() . " - " . $this->getIzenburuaeu();
+        return $this->getKodea()." - ".$this->getIzenburuaeu();
     }
 
     /**
@@ -191,7 +186,6 @@ class Atala
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      */
-
 
     /**
      * Get id

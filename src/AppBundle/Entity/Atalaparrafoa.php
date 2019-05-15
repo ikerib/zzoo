@@ -25,12 +25,12 @@ class Atalaparrafoa
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var integer
      *
      * @ORM\Column(name="origenid", type="bigint", nullable=true)
      */
+
     private $origenid;
 
     /**
@@ -96,36 +96,36 @@ class Atalaparrafoa
      */
     private $updatedAt;
 
-  /**
-   * @var string $createdBy
-   *
-   * @Gedmo\Blameable(on="create")
-   * @ORM\Column
-   */
-  private $createdBy;
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(nullable=true)
+     */
+    private $createdBy;
 
-  /**
-   * @var string $updatedBy
-   *
-   * @Gedmo\Blameable(on="update")
-   * @ORM\Column
-   */
-  private $updatedBy;
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(nullable=true)
+     */
+    private $updatedBy;
 
     /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      * ***** ERLAZIOAK
- * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      */
-    
+
     /**
      * @var \Atala
      *
      * @ORM\ManyToOne(targetEntity="Atala",inversedBy="parrafoak")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="atala_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="atala_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $atala;

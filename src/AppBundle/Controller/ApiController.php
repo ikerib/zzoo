@@ -95,7 +95,7 @@ class ApiController extends FOSRestController
     $view        = View::create();
     $view->setData($ordenantzak);
     header('content-type: application/json; charset=utf-8');
-    header('access-control-allow-origin: *');
+
 
 
     return $view;
@@ -132,7 +132,7 @@ class ApiController extends FOSRestController
     $view = View::create();
     $view->setData($ordenantzak);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+
 
     return $view;
   }
@@ -152,7 +152,7 @@ class ApiController extends FOSRestController
     $em         = $this->getDoctrine()->getManager();
     $ordenantza = $em->getRepository('AppBundle:Ordenantza')->findById($id);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+
 
     return $ordenantza;
   }
@@ -198,7 +198,7 @@ class ApiController extends FOSRestController
     $view = View::create();
     $view->setData($atalak);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+
 
     return $view;
 
@@ -218,7 +218,7 @@ class ApiController extends FOSRestController
     $em    = $this->getDoctrine()->getManager();
     $atala = $em->getRepository('AppBundle:Atala')->findById($id);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+
 
     return $atala;
   }
@@ -260,7 +260,7 @@ class ApiController extends FOSRestController
     $view = View::create();
     $view->setData($azpiatalak);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+
 
     return $view;
 
@@ -302,7 +302,7 @@ class ApiController extends FOSRestController
     $view = View::create();
     $view->setData($azpiatalak);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+
 
     return $view;
 
@@ -332,11 +332,40 @@ class ApiController extends FOSRestController
     $view = View::create();
     $view->setData($azpiatalak);
     header('content-type: application/json; charset=utf-8');
-    header("access-control-allow-origin: *");
+
 
     return $view;
 
   }
+
+    /**
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Zerga baten informazioa eskuratu origenid bidez",
+     *   statusCodes = {
+     *     200 = "Zuzena denean"
+     *   }
+     * )
+     *
+     *
+     * @return View
+     *
+     * @Annotations\View()*
+     * @Get("/zergabyorigenid/{origenid}")
+     */
+    public function getAzpiatalabyorigenidAction($origenid)
+    {
+        $em         = $this->getDoctrine()->getManager();
+        $azpiatalak = $em->getRepository('AppBundle:Azpiatala')->findOneBy(array('origenid'=>$origenid));
+
+        $view = View::create();
+        $view->setData($azpiatalak);
+        header('content-type: application/json; charset=utf-8');
+
+
+        return $view;
+    }
 
 
     /**
@@ -365,7 +394,7 @@ class ApiController extends FOSRestController
         $view   = View::create();
         $view->setData($kostua);
         header('content-type: application/json; charset=utf-8');
-        header('access-control-allow-origin: *');
+
 
         return $view;
     }

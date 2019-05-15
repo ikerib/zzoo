@@ -26,7 +26,6 @@ class Kontzeptua
      * @ORM\Column(name="id", type="bigint", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @Expose()
      */
     private $id;
 
@@ -103,7 +102,7 @@ class Kontzeptua
      * @ORM\Column(name="unitatea", type="string", length=50, nullable=true)
      */
     private $unitatea;
-    
+
     /**
      * @var string
      * @Expose
@@ -133,21 +132,21 @@ class Kontzeptua
      */
     private $updatedAt;
 
-  /**
-   * @var string $createdBy
-   *
-   * @Gedmo\Blameable(on="create")
-   * @ORM\Column
-   */
-  private $createdBy;
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(nullable=true)
+     */
+    private $createdBy;
 
-  /**
-   * @var string $updatedBy
-   *
-   * @Gedmo\Blameable(on="update")
-   * @ORM\Column
-   */
-  private $updatedBy;
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(nullable=true)
+     */
+    private $updatedBy;
 
     /**
      * ************************************************************************************************************************************************************************
@@ -172,7 +171,7 @@ class Kontzeptua
      *
      * @ORM\ManyToOne(targetEntity="Baldintza", fetch="EAGER")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="baldintza_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="baldintza_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $baldintza;
@@ -182,7 +181,7 @@ class Kontzeptua
      *
      * @ORM\ManyToOne(targetEntity="Kontzeptumota")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="kontzeptumota_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="kontzeptumota_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $kontzeptumota;
