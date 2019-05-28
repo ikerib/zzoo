@@ -28,6 +28,13 @@ class Ordenantzaparrafoa
 
     /**
      * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
+     * @var integer
      * @Gedmo\SortablePosition
      * @ORM\Column(name="ordena", type="integer", nullable=true)
      */
@@ -89,21 +96,21 @@ class Ordenantzaparrafoa
      */
     private $updatedAt;
 
-  /**
-   * @var string $createdBy
-   *
-   * @Gedmo\Blameable(on="create")
-   * @ORM\Column
-   */
-  private $createdBy;
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(nullable=true)
+     */
+    private $createdBy;
 
-  /**
-   * @var string $updatedBy
-   *
-   * @Gedmo\Blameable(on="update")
-   * @ORM\Column
-   */
-  private $updatedBy;
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(nullable=true)
+     */
+    private $updatedBy;
     /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
@@ -117,7 +124,7 @@ class Ordenantzaparrafoa
      *
      * @ORM\ManyToOne(targetEntity="Ordenantza", inversedBy="parrafoak")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="ordenantza_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="ordenantza_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $ordenantza;
@@ -127,7 +134,7 @@ class Ordenantzaparrafoa
      * @ORM\ManyToOne(targetEntity="Udala")
      */
     private $udala;
-    
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -467,5 +474,29 @@ class Ordenantzaparrafoa
     public function getUpdatedBy()
     {
         return $this->updatedBy;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Ordenantzaparrafoa
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

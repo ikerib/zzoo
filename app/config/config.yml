@@ -136,7 +136,7 @@ fos_rest:
     view:
         mime_types:
             json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1', 'application/json;version=1.2']
-        view_response_listener: force
+        view_response_listener: true
         formats:
             xml:  true
             json: true
@@ -144,7 +144,7 @@ fos_rest:
             html: true
     format_listener:
         rules:
-            - { path: ^/, priorities: [ html, json, xml ], fallback_format: ~, prefer_extension: true }
+            - { path: ^/, priorities: [ html, json, xml ], fallback_format: json, prefer_extension: true }
         media_type:
             version_regex: '/(v|version)=(?P<version>[0-9\.]+)/'
     exception:
@@ -159,6 +159,3 @@ fos_rest:
     body_listener: true
     routing_loader:
             default_format: json
-
-white_october_tcpdf:
-    class: 'AppBundle\Utils\Mypdf'

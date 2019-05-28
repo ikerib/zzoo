@@ -44,11 +44,12 @@
         "nelmio/api-doc-bundle": "^2.12",
         "fortawesome/font-awesome": "~4.0",
         "guzzlehttp/guzzle": "^6.2",
-        "symfony/filesystem": "^3.1",
+
         "stof/doctrine-extensions-bundle": "^1.2",
         "easycorp/easy-log-handler": "^1.0",
         "mbence/opentbs-bundle": "^1.9",
-        "nelmio/cors-bundle": "^1.4"
+        "nelmio/cors-bundle": "^1.4",
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

@@ -23,6 +23,13 @@ class Kontzeptumota
     private $id;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="motaeu", type="text", length=65535, nullable=true)
@@ -36,21 +43,21 @@ class Kontzeptumota
      */
     private $motaes;
 
-  /**
-   * @var string $createdBy
-   *
-   * @Gedmo\Blameable(on="create")
-   * @ORM\Column
-   */
-  private $createdBy;
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(nullable=true)
+     */
+    private $createdBy;
 
-  /**
-   * @var string $updatedBy
-   *
-   * @Gedmo\Blameable(on="update")
-   * @ORM\Column
-   */
-  private $updatedBy;
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(nullable=true)
+     */
+    private $updatedBy;
 
     /**
      * ************************************************************************************************************************************************************************
@@ -211,5 +218,29 @@ class Kontzeptumota
     public function getUpdatedBy()
     {
         return $this->updatedBy;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Kontzeptumota
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

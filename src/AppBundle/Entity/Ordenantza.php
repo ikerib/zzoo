@@ -21,143 +21,152 @@ use Gedmo\Mapping\Annotation as Gedmo;
  */
 class Ordenantza
 {
-  /**
-   * @var integer
-   * @Expose
-   *
-   * @ORM\Column(name="id", type="bigint", nullable=false)
-   * @ORM\Id
-   * @ORM\GeneratedValue(strategy="IDENTITY")
-   */
-  private $id;
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="kodea", type="string", length=9, nullable=true)
-   */
-  private $kodea;
-  /**
-   * @var string
-   * @Expose
-   *
-   * @ORM\Column(name="kodea_prod", type="string", length=9, nullable=true)
-   */
-  private $kodea_prod;
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="izenburuaeu", type="string", length=255, nullable=true)
-   */
-  private $izenburuaeu;
-  /**
-   * @var string
-   * @Expose
-   *
-   * @ORM\Column(name="izenburuaeu_prod", type="string", length=255, nullable=true)
-   */
-  private $izenburuaeu_prod;
-  /**
-   * @var string
-   *
-   * @ORM\Column(name="izenburuaes", type="string", length=255, nullable=true)
-   */
-  private $izenburuaes;
-  /**
-   * @var string
-   * @Expose
-   *
-   * @ORM\Column(name="izenburuaes_prod", type="string", length=255, nullable=true)
-   */
-  private $izenburuaes_prod;
-  /**
-   * @var bool
-   *
-   * @ORM\Column(name="ezabatu", type="boolean", nullable=true)
-   */
-  private $ezabatu;
-
-  /**
-   * @var \DateTime
-   *
-   * @ORM\Column(name="created_at", type="datetime", nullable=true)
-   */
-  private $createdAt;
-  /**
-   * @var \DateTime
-   *
-   * @ORM\Column(name="updated_at", type="datetime", nullable=true)
-   */
-  private $updatedAt;
-
-  /**
-   * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
-   */
-  private $deletedAt;
-
-  /**
-   * @var string $createdBy
-   *
-   * @Gedmo\Blameable(on="create")
-   * @ORM\Column
-   */
-  private $createdBy;
-
-  /**
-   * @var string $updatedBy
-   *
-   * @Gedmo\Blameable(on="update")
-   * @ORM\Column
-   */
-  private $updatedBy;
-
-  /**
-   * ************************************************************************************************************************************************************************
-   * ************************************************************************************************************************************************************************
-   * ***** ERLAZIOAK
-   * ************************************************************************************************************************************************************************
-   * ************************************************************************************************************************************************************************
-   */
-
-  /**
-   * @var Udala
-   * @ORM\ManyToOne(targetEntity="Udala")
-   */
-  private $udala;
-
-  /**
-   * @var Ordenantza
-   * @ORM\OneToMany(targetEntity="Ordenantzaparrafoa", mappedBy="ordenantza", cascade={"remove"})
-   * @ORM\OrderBy({"ordena" = "ASC"})
-   */
-  protected $parrafoak;
-  /**
-   * @var Atala
-   * @Expose
-   * @ORM\OrderBy({"kodea" = "ASC"})
-   * @ORM\OneToMany(targetEntity="Atala", mappedBy="ordenantza", cascade={"remove"})
-   */
-  protected $atalak;
-
-  public function __construct()
-  {
-    $this->createdAt = new \DateTime();
-    $this->updatedAt = new \DateTime();
-  }
-
-  public function __toString()
-  {
-    return $this->getKodea();
-  }
 
 
-  /**
-   * ************************************************************************************************************************************************************************
-   * ************************************************************************************************************************************************************************
-   * ***** ERLAZIOAK
-   * ************************************************************************************************************************************************************************
-   * ************************************************************************************************************************************************************************
-   */
+    /**
+     * @var integer
+     * @Expose
+     *
+     * @ORM\Column(name="id", type="bigint", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="kodea", type="string", length=9, nullable=true)
+     */
+    private $kodea;
+    /**
+     * @var string
+     * @Expose
+     *
+     * @ORM\Column(name="kodea_prod", type="string", length=9, nullable=true)
+     */
+    private $kodea_prod;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="izenburuaeu", type="string", length=255, nullable=true)
+     */
+    private $izenburuaeu;
+    /**
+     * @var string
+     * @Expose
+     *
+     * @ORM\Column(name="izenburuaeu_prod", type="string", length=255, nullable=true)
+     */
+    private $izenburuaeu_prod;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="izenburuaes", type="string", length=255, nullable=true)
+     */
+    private $izenburuaes;
+    /**
+     * @var string
+     * @Expose
+     *
+     * @ORM\Column(name="izenburuaes_prod", type="string", length=255, nullable=true)
+     */
+    private $izenburuaes_prod;
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="ezabatu", type="boolean", nullable=true)
+     */
+    private $ezabatu;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=true)
+     */
+    private $createdAt;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @ORM\Column(name="deletedAt", type="datetime", nullable=true)
+     */
+    private $deletedAt;
+
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(nullable=true)
+     */
+    private $createdBy;
+
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(nullable=true)
+     */
+    private $updatedBy;
+
+    /**
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     * ***** ERLAZIOAK
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     */
+
+    /**
+     * @var Udala
+     * @ORM\ManyToOne(targetEntity="Udala")
+     */
+    private $udala;
+
+    /**
+     * @var Ordenantza
+     * @ORM\OneToMany(targetEntity="Ordenantzaparrafoa", mappedBy="ordenantza", cascade={"remove", "persist"})
+     * @ORM\OrderBy({"ordena" = "ASC"})
+     */
+    protected $parrafoak;
+    /**
+     * @var Atala
+     * @Expose
+     * @ORM\OrderBy({"kodea" = "ASC"})
+     * @ORM\OneToMany(targetEntity="Atala", mappedBy="ordenantza", cascade={"remove", "persist"})
+     */
+    protected $atalak;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->getKodea();
+    }
+
+
+    /**
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     * ***** ERLAZIOAK
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     */
 
 
     /**
@@ -548,5 +557,29 @@ class Ordenantza
     public function getAtalak()
     {
         return $this->atalak;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Ordenantza
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }

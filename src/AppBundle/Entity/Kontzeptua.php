@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use AppBundle\Annotation\EzabatuMarka;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Annotation\UdalaEgiaztatu;
+use JMS\Serializer\Annotation as Serializer;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -27,6 +28,13 @@ class Kontzeptua
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="origenid", type="bigint", nullable=true)
+     */
+    private $origenid;
 
     /**
      * @var string
@@ -94,7 +102,7 @@ class Kontzeptua
      * @ORM\Column(name="unitatea", type="string", length=50, nullable=true)
      */
     private $unitatea;
-    
+
     /**
      * @var string
      * @Expose
@@ -124,21 +132,21 @@ class Kontzeptua
      */
     private $updatedAt;
 
-  /**
-   * @var string $createdBy
-   *
-   * @Gedmo\Blameable(on="create")
-   * @ORM\Column
-   */
-  private $createdBy;
+    /**
+     * @var string $createdBy
+     *
+     * @Gedmo\Blameable(on="create")
+     * @ORM\Column(nullable=true)
+     */
+    private $createdBy;
 
-  /**
-   * @var string $updatedBy
-   *
-   * @Gedmo\Blameable(on="update")
-   * @ORM\Column
-   */
-  private $updatedBy;
+    /**
+     * @var string $updatedBy
+     *
+     * @Gedmo\Blameable(on="update")
+     * @ORM\Column(nullable=true)
+     */
+    private $updatedBy;
 
     /**
      * ************************************************************************************************************************************************************************
@@ -163,7 +171,7 @@ class Kontzeptua
      *
      * @ORM\ManyToOne(targetEntity="Baldintza", fetch="EAGER")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="baldintza_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="baldintza_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $baldintza;
@@ -173,7 +181,7 @@ class Kontzeptua
      *
      * @ORM\ManyToOne(targetEntity="Kontzeptumota")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="kontzeptumota_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="kontzeptumota_id", referencedColumnName="id", onDelete="SET NULL")
      * })
      */
     private $kontzeptumota;
@@ -669,5 +677,29 @@ class Kontzeptua
     public function getUpdatedBy()
     {
         return $this->updatedBy;
+    }
+
+    /**
+     * Set origenid
+     *
+     * @param integer $origenid
+     *
+     * @return Kontzeptua
+     */
+    public function setOrigenid($origenid)
+    {
+        $this->origenid = $origenid;
+
+        return $this;
+    }
+
+    /**
+     * Get origenid
+     *
+     * @return integer
+     */
+    public function getOrigenid()
+    {
+        return $this->origenid;
     }
 }
