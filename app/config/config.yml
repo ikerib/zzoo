@@ -123,6 +123,12 @@ nelmio_cors:
         max_age: 3600
         hosts: []
         origin_regex: false
+    paths:
+        '^/api/':
+            allow_origin: ['*']
+            allow_headers: ['*']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            max_age: 3600
 
 fos_rest:
     disable_csrf_role: ROLE_API
@@ -130,7 +136,7 @@ fos_rest:
     view:
         mime_types:
             json: ['application/json', 'application/json;version=1.0', 'application/json;version=1.1', 'application/json;version=1.2']
-        view_response_listener: 'force'
+        view_response_listener: force
         formats:
             xml:  true
             json: true
@@ -153,15 +159,6 @@ fos_rest:
     body_listener: true
     routing_loader:
             default_format: json
-
-nelmio_cors:
-    paths:
-        '^/api/':
-            allow_origin: ['*']
-            allow_headers: ['*']
-            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
-            max_age: 3600
-
 
 white_october_tcpdf:
     class: 'AppBundle\Utils\Mypdf'

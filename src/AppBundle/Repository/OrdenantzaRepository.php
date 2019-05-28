@@ -18,7 +18,7 @@ class OrdenantzaRepository extends EntityRepository
         $em = $this->getEntityManager();
 
 
-        $dql = "
+        $dql = '
             SELECT o,p,a,ap,az,azp,k,m,b
                 FROM AppBundle:Ordenantza o
                     LEFT JOIN o.parrafoak p
@@ -30,7 +30,7 @@ class OrdenantzaRepository extends EntityRepository
                     LEFT JOIN k.kontzeptumota m
                     LEFT JOIN k.baldintza b
                 WHERE o.id = :id
-        ";
+        ';
 
 //        $qb = $this->createQueryBuilder('o')
 //            ->select('o,p,a')
