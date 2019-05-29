@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Controller\Annotations\Get;
@@ -50,7 +51,7 @@ class ApiController extends FOSRestController
   public function getOrdenantzakbykodeaAction($kodea)
   {
     $em = $this->getDoctrine()->getManager();
-    /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+    /** @var  $query QueryBuilder */
     $query = $em->createQuery(
     /** @lang text */
       '
@@ -182,7 +183,7 @@ class ApiController extends FOSRestController
   {
     $em = $this->getDoctrine()->getManager();
 //        $atalak = $em->getRepository('AppBundle:Atala')->findBy(array('ordenantza'=>$ordenantzaid));
-    /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+    /** @var  $query QueryBuilder */
     $query = $em->createQuery(
     /** @lang text */
       '
@@ -246,7 +247,7 @@ class ApiController extends FOSRestController
   public function getAzpiatalakudalaAction($udalaid)
   {
     $em = $this->getDoctrine()->getManager();
-    /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+    /** @var  $query QueryBuilder */
     $query = $em->createQuery(
     /** @lang text */
       'SELECT p.id, p.kodea_prod, p.izenburuaeu_prod, p.izenburuaes_prod 
@@ -287,7 +288,7 @@ class ApiController extends FOSRestController
   public function getAzpiatalakAction($tributuaid)
   {
     $em = $this->getDoctrine()->getManager();
-    /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+    /** @var  $query QueryBuilder */
     $query = $em->createQuery(
     /** @lang text */
       '
@@ -349,6 +350,8 @@ class ApiController extends FOSRestController
      * )
      *
      *
+     * @param $origenid
+     *
      * @return View
      *
      * @Annotations\View()*
@@ -378,23 +381,25 @@ class ApiController extends FOSRestController
      *   }
      * )
      * @param $old_id
+     * @param $udalaid
      *
-     * @Get("/kostua/{old_id}")
      * @return View
+     * @Get("/kostua/{old_id}/{udalaid}")
      */
-    public function getKostuaAction($old_id)
+    public function getKostuaAction($old_id, $udalaid)
     {
         /** @var EntityManager $em */
         $em     = $this->getDoctrine()->getManager();
-        $kostua = $em->getRepository('AppBundle:Kontzeptua')->findBy(
+        $kostua = $em->getRepository('AppBundle:Azpiatala')->findBy(
             array(
-                'origenid' => $old_id,
+                'origenid'  => $old_id,
+                'udala'     => $udalaid
             )
         );
         $view   = View::create();
+        $view->setFormat('json');
         $view->setData($kostua);
         header('content-type: application/json; charset=utf-8');
-
 
         return $view;
     }
