@@ -2,26 +2,33 @@
 
 namespace AppBundle\Controller;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\AppBundle;
 use AppBundle\Entity\Ordenantza;
 use AppBundle\Entity\Udala;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
      * @Route("/ordenantza/{id}", name="ordenantzabat")
+     * @param Request $request
+     * @param         $id
+     *
+     * @return Response
      */
     public function ordenantzabatAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        /** @var \AppBundle\Entity\Ordenantza $ordenantza */
-        $ordenantza = $em->getRepository('AppBundle:Ordenantza')->find($id);
+        /** @var Ordenantza $ordenantza */
+        //$ordenantza = $em->getRepository('AppBundle:Ordenantza')->find($id);
+        $ordenantza = $em->getRepository('AppBundle:Ordenantza')->getOrdenantzabat($id);
 
-        /** @var \AppBundle\Entity\Udala $udala */
+        /** @var Udala $udala */
         $udala = $ordenantza->getUdala();
 
         return $this->render('default\ordenantza.html.twig', array(
@@ -34,15 +41,15 @@ class DefaultController extends Controller
    * @Route("/html/{udala}", name="homepage")
    * @param         $udala
    *
-   * @return \Symfony\Component\HttpFoundation\Response
+   * @return Response
    */
     public function htmlAction($udala)
     {
         $em = $this->getDoctrine()->getManager();
-        /** @var $udala \AppBundle\Entity\Udala */
+        /** @var $udala Udala */
         $udala = $em->getRepository('AppBundle:Udala')->findOneBy(array('kodea' => $udala));
 
-        /** @var $ordenantzak \AppBundle\Entity\Ordenantza */
+        /** @var $ordenantzak Ordenantza */
         $ordenantzak = $em->getRepository('AppBundle:Ordenantza')->findBy(
             array(
                 'udala' => $udala->getId(),
@@ -60,18 +67,18 @@ class DefaultController extends Controller
    * @Route("/html2/{udala}", name="homepage2")
    * @param         $udala
    *
-   * @return \Symfony\Component\HttpFoundation\Response
+   * @return Response
    */
     public function htm2lAction($udala)
     {
         $em = $this->getDoctrine()->getManager();
-        /** @var $udala \AppBundle\Entity\Udala */
+        /** @var $udala Udala */
         $udala = $em->getRepository('AppBundle:Udala')->findOneBy(array('kodea' => $udala));
 
         //$filter = $this->get('app.doctrine.filter.configurator');
 
 
-        /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+        /** @var  $query QueryBuilder */
         $query = $em->createQuery(
             /** @lang text */
               '

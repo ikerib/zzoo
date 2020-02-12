@@ -168,7 +168,7 @@ class Kontzeptua
 
     /**
      * @var \Baldintza
-     *
+     * @Expose
      * @ORM\ManyToOne(targetEntity="Baldintza", fetch="EAGER")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="baldintza_id", referencedColumnName="id", onDelete="SET NULL")

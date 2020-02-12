@@ -25,6 +25,7 @@ class OrdenantzaRepository extends EntityRepository
                     LEFT JOIN o.atalak a
                     LEFT JOIN a.parrafoak ap
                     LEFT JOIN a.azpiatalak az
+                    LEFT JOIN az.parrafoakondoren azpo
                     LEFT JOIN az.parrafoak azp
                     LEFT JOIN az.kontzeptuak k
                     LEFT JOIN k.kontzeptumota m
@@ -45,7 +46,7 @@ class OrdenantzaRepository extends EntityRepository
         $consulta = $em->createQuery($dql);
         $consulta->setParameter('id', $id);
 //        print_r($consulta->getSQL());
-        return $consulta->getResult(Query::HYDRATE_ARRAY);
+        return $consulta->getOneOrNullResult();
 
 //        return $qb;
     }
