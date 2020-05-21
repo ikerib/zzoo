@@ -17,21 +17,26 @@ class OrdenantzaRepository extends EntityRepository
     {
         $em = $this->getEntityManager();
 
-
         $dql = '
-            SELECT o,p,a,ap,az,azp,k,m,b
+            SELECT o
                 FROM AppBundle:Ordenantza o
-                    LEFT JOIN o.parrafoak p
-                    LEFT JOIN o.atalak a
-                    LEFT JOIN a.parrafoak ap
-                    LEFT JOIN a.azpiatalak az
-                    LEFT JOIN az.parrafoakondoren azpo
-                    LEFT JOIN az.parrafoak azp
-                    LEFT JOIN az.kontzeptuak k
-                    LEFT JOIN k.kontzeptumota m
-                    LEFT JOIN k.baldintza b
                 WHERE o.id = :id
         ';
+
+//        $dql = '
+//            SELECT o,p,a,ap,az,azp,k,m,b
+//                FROM AppBundle:Ordenantza o
+//                    LEFT JOIN o.parrafoak p
+//                    LEFT JOIN o.atalak a
+//                    LEFT JOIN a.parrafoak ap
+//                    LEFT JOIN a.azpiatalak az
+//                    LEFT JOIN az.parrafoakondoren azpo
+//                    LEFT JOIN az.parrafoak azp
+//                    LEFT JOIN az.kontzeptuak k
+//                    LEFT JOIN k.kontzeptumota m
+//                    LEFT JOIN k.baldintza b
+//                WHERE o.id = :id
+//        ';
 
 //        $qb = $this->createQueryBuilder('o')
 //            ->select('o,p,a')
